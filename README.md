@@ -100,6 +100,77 @@ This example shows:
 
 
 
+## 🔐 Zama FHEVM Usage
+
+This example demonstrates the following **Zama FHEVM** features:
+
+### Zama FHEVM Features Used
+
+- **ZamaEthereumConfig**: Inherits from Zama's network configuration
+  ```solidity
+  contract EntropyArithmetic is ZamaEthereumConfig {
+      // Inherits network-specific FHEVM configuration
+  }
+  ```
+
+- **FHE Operations**: Uses Zama's FHE library for encrypted arithmetic
+  - `FHE.add()` - Encrypted addition
+  - `FHE.sub()` - Encrypted subtraction
+  - `FHE.mul()` - Encrypted multiplication
+  - `FHE.xor()` - Encrypted XOR operation
+
+- **Encrypted Types**: Uses Zama's encrypted integer types
+  - `euint64` - 64-bit encrypted unsigned integer
+  - `externalEuint64` - External encrypted value from user
+
+- **Access Control**: Uses Zama's permission system
+  - `FHE.allowThis()` - Allow contract to use encrypted values
+  - `FHE.fromExternal()` - Convert external encrypted values to internal
+
+### Zama FHEVM Imports
+
+```solidity
+// Zama FHEVM Core Library - FHE operations and encrypted types
+import {FHE, euint64, externalEuint64} from "@fhevm/solidity/lib/FHE.sol";
+
+// Zama Network Configuration - Provides network-specific settings
+import {ZamaEthereumConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
+```
+
+### Zama FHEVM Code Example
+
+```solidity
+// Using Zama FHEVM's encrypted integer type
+euint64 private value1;
+euint64 private value2;
+
+// Converting external encrypted value to internal (Zama FHEVM)
+euint64 internalValue = FHE.fromExternal(encryptedValue, inputProof);
+FHE.allowThis(internalValue); // Zama FHEVM permission system
+
+// Performing encrypted arithmetic using Zama FHEVM operations
+euint64 sum = FHE.add(value1, value2);
+FHE.allowThis(sum);
+
+// Using Zama FHEVM's XOR operation for entropy mixing
+euint64 entropy = entropyOracle.getEncryptedEntropy(requestId);
+FHE.allowThis(entropy);
+euint64 result = FHE.xor(sum, entropy);
+```
+
+### Zama FHEVM Concepts Demonstrated
+
+1. **Encrypted Arithmetic**: Performing addition, subtraction, and multiplication on encrypted data
+2. **External Encryption**: Handling user-provided encrypted values with input proofs
+3. **Permission Management**: Using Zama's access control system (`FHE.allowThis`)
+4. **Entropy Integration**: Combining Zama FHEVM operations with entropy for enhanced security
+
+### Learn More About Zama FHEVM
+
+- 📚 [Zama FHEVM Documentation](https://docs.zama.org/protocol)
+- 🎓 [Zama Developer Hub](https://www.zama.org/developer-hub)
+- 💻 [Zama FHEVM GitHub](https://github.com/zama-ai/fhevm)
+
 ## 🔍 Contract Code
 
 ```solidity
