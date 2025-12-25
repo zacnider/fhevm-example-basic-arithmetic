@@ -1,6 +1,10 @@
 # EntropyArithmetic
 
-FHE arithmetic operations using EntropyOracle
+Learn how to perform encrypted arithmetic operations (FHE.add, FHE.sub)
+
+## 🎓 What You'll Learn
+
+This example teaches you how to use FHEVM to build privacy-preserving smart contracts. You'll learn step-by-step how to implement encrypted operations, manage permissions, and work with encrypted data.
 
 ## 🚀 Quick Start
 
@@ -48,19 +52,19 @@ FHE arithmetic operations using EntropyOracle
 
 ---
 
-## 📋 Overview
+## 📚 Overview
 
 @title EntropyArithmetic
-@notice FHE arithmetic operations using EntropyOracle
-@dev Example demonstrating EntropyOracle integration: using entropy in arithmetic operations
-This example shows:
-- How to integrate with EntropyOracle
-- Using entropy to enhance arithmetic operations
+@notice FHE arithmetic operations using encrypted randomness
+@dev This example teaches you how to integrate encrypted randomness into your FHEVM contracts: using entropy in arithmetic operations
+In this example, you will learn:
+- How to integrate encrypted randomness
+- How to use encrypted randomness to enhance arithmetic operations
 - Entropy-based calculations (add, sub, mul with entropy)
 - Combining entropy with encrypted values
 
-@notice Constructor - sets EntropyOracle address
-@param _entropyOracle Address of EntropyOracle contract
+@notice Constructor - sets encrypted randomness address
+@param _encrypted randomness Address of encrypted randomness contract
 
 @notice Initialize two encrypted values
 @param encryptedValue1 First encrypted value
@@ -70,7 +74,7 @@ This example shows:
 
 @notice Request entropy for arithmetic operations
 @param tag Unique tag for this request
-@return requestId Request ID from EntropyOracle
+@return requestId Request ID from encrypted randomness
 @dev Requires 0.00001 ETH fee
 
 @notice Add two encrypted values
@@ -96,28 +100,29 @@ This example shows:
 
 @notice Check if values are initialized
 
-@notice Get EntropyOracle address
+@notice Get encrypted randomness address
 
 
 
-## 🔐 Zama FHEVM Usage
+## 🔐 Learn Zama FHEVM Through This Example
 
-This example demonstrates the following **Zama FHEVM** features:
+This example teaches you how to use the following **Zama FHEVM** features:
 
-### Zama FHEVM Features Used
+### What You'll Learn About
 
 - **ZamaEthereumConfig**: Inherits from Zama's network configuration
   ```solidity
-  contract EntropyArithmetic is ZamaEthereumConfig {
+  contract MyContract is ZamaEthereumConfig {
       // Inherits network-specific FHEVM configuration
   }
   ```
 
-- **FHE Operations**: Uses Zama's FHE library for encrypted arithmetic
-  - `FHE.add()` - Encrypted addition
-  - `FHE.sub()` - Encrypted subtraction
-  - `FHE.mul()` - Encrypted multiplication
-  - `FHE.xor()` - Encrypted XOR operation
+- **FHE Operations**: Uses Zama's FHE library for encrypted operations
+  - `FHE.add()` - Zama FHEVM operation
+  - `FHE.sub()` - Zama FHEVM operation
+  - `FHE.mul()` - Zama FHEVM operation
+  - `FHE.eq()` - Zama FHEVM operation
+  - `FHE.xor()` - Zama FHEVM operation
 
 - **Encrypted Types**: Uses Zama's encrypted integer types
   - `euint64` - 64-bit encrypted unsigned integer
@@ -125,6 +130,8 @@ This example demonstrates the following **Zama FHEVM** features:
 
 - **Access Control**: Uses Zama's permission system
   - `FHE.allowThis()` - Allow contract to use encrypted values
+  - `FHE.allow()` - Allow specific user to decrypt
+  - `FHE.allowTransient()` - Temporary permission for single operation
   - `FHE.fromExternal()` - Convert external encrypted values to internal
 
 ### Zama FHEVM Imports
@@ -141,35 +148,32 @@ import {ZamaEthereumConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
 
 ```solidity
 // Using Zama FHEVM's encrypted integer type
-euint64 private value1;
-euint64 private value2;
+euint64 private encryptedValue;
 
 // Converting external encrypted value to internal (Zama FHEVM)
 euint64 internalValue = FHE.fromExternal(encryptedValue, inputProof);
 FHE.allowThis(internalValue); // Zama FHEVM permission system
 
-// Performing encrypted arithmetic using Zama FHEVM operations
-euint64 sum = FHE.add(value1, value2);
-FHE.allowThis(sum);
-
-// Using Zama FHEVM's XOR operation for entropy mixing
-euint64 entropy = entropyOracle.getEncryptedEntropy(requestId);
-FHE.allowThis(entropy);
-euint64 result = FHE.xor(sum, entropy);
+// Performing encrypted operations using Zama FHEVM
+euint64 result = FHE.add(encryptedValue, FHE.asEuint64(1));
+FHE.allowThis(result);
 ```
 
-### Zama FHEVM Concepts Demonstrated
+### FHEVM Concepts You'll Learn
 
-1. **Encrypted Arithmetic**: Performing addition, subtraction, and multiplication on encrypted data
-2. **External Encryption**: Handling user-provided encrypted values with input proofs
-3. **Permission Management**: Using Zama's access control system (`FHE.allowThis`)
-4. **Entropy Integration**: Combining Zama FHEVM operations with entropy for enhanced security
+1. **Encrypted Arithmetic**: Learn how to use Zama FHEVM for encrypted arithmetic
+2. **Encrypted Comparison**: Learn how to use Zama FHEVM for encrypted comparison
+3. **External Encryption**: Learn how to use Zama FHEVM for external encryption
+4. **Permission Management**: Learn how to use Zama FHEVM for permission management
+5. **Entropy Integration**: Learn how to use Zama FHEVM for entropy integration
 
 ### Learn More About Zama FHEVM
 
 - 📚 [Zama FHEVM Documentation](https://docs.zama.org/protocol)
 - 🎓 [Zama Developer Hub](https://www.zama.org/developer-hub)
 - 💻 [Zama FHEVM GitHub](https://github.com/zama-ai/fhevm)
+
+
 
 ## 🔍 Contract Code
 
