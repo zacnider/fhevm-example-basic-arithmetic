@@ -1,20 +1,20 @@
 # EntropyArithmetic
 
-FHE arithmetic operations using EntropyOracle
+Learn how to perform encrypted arithmetic operations (FHE.add, FHE.sub)
 
-## Overview
+## 📚 Overview
 
 @title EntropyArithmetic
-@notice FHE arithmetic operations using EntropyOracle
-@dev Example demonstrating EntropyOracle integration: using entropy in arithmetic operations
-This example shows:
-- How to integrate with EntropyOracle
-- Using entropy to enhance arithmetic operations
+@notice FHE arithmetic operations using encrypted randomness
+@dev This example teaches you how to integrate encrypted randomness into your FHEVM contracts: using entropy in arithmetic operations
+In this example, you will learn:
+- How to integrate encrypted randomness
+- How to use encrypted randomness to enhance arithmetic operations
 - Entropy-based calculations (add, sub, mul with entropy)
 - Combining entropy with encrypted values
 
-@notice Constructor - sets EntropyOracle address
-@param _entropyOracle Address of EntropyOracle contract
+@notice Constructor - sets encrypted randomness address
+@param _encrypted randomness Address of encrypted randomness contract
 
 @notice Initialize two encrypted values
 @param encryptedValue1 First encrypted value
@@ -24,7 +24,7 @@ This example shows:
 
 @notice Request entropy for arithmetic operations
 @param tag Unique tag for this request
-@return requestId Request ID from EntropyOracle
+@return requestId Request ID from encrypted randomness
 @dev Requires 0.00001 ETH fee
 
 @notice Add two encrypted values
@@ -50,7 +50,7 @@ This example shows:
 
 @notice Check if values are initialized
 
-@notice Get EntropyOracle address
+@notice Get encrypted randomness address
 
 
 
